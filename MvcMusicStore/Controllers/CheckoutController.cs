@@ -40,10 +40,8 @@ namespace MvcMusicStore.Controllers
                     order.Username = User.Identity.Name;
                     order.OrderDate = DateTime.Now;
 
-                    //Save Order
                     storeDB.Orders.Add(order);
                     storeDB.SaveChanges();
-                    //Process the order
                     var cart = ShoppingCart.GetCart(this.HttpContext);
                     cart.CreateOrder(order);
 
@@ -53,7 +51,6 @@ namespace MvcMusicStore.Controllers
             }
             catch
             {
-                //Invalid - redisplay with errors
                 return View(order);
             }
         }
@@ -62,7 +59,6 @@ namespace MvcMusicStore.Controllers
         // GET: /Checkout/Complete
         public ActionResult Complete(int id)
         {
-            // Validate customer owns this order
             bool isValid = storeDB.Orders.Any(
                 o => o.OrderId == id &&
                 o.Username == User.Identity.Name);

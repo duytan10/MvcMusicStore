@@ -9,7 +9,6 @@ namespace MvcMusicStore.Models
     public class MusicStoreEntities : DbContext
     {
 
-        // Specify the name of the connections string which will be added in web.config
         public MusicStoreEntities() : base("MusicStoreEntities")
         {
         }
